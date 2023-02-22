@@ -1,0 +1,69 @@
+import random as r
+from tkinter import *
+
+root = Tk()
+
+suits = ["Hearts", "Diamonds", "Spades", "Clubs"]
+rank = ["Ace", "Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Jack","Queen","King"]
+cards = []
+
+for suit in suits:
+    for num in rank:
+        cards.append(f"{num} of {suit}")
+
+r.shuffle(cards)
+def gethand()   :
+    global hand
+    hand = [cards.pop() for i in range(5)]
+    lbl1.config(text = f"your cards are: {hand}")
+    global card1
+    global card2
+    global card3
+    global card4
+    global card5
+    card1 = hand[0].split()
+    card2 = hand[1].split()
+    card3 = hand[2].split()
+    card4 = hand[3].split()
+    card5 = hand[4].split()
+
+def detectcombos():
+    if (card1[2] in card2[2] and card1[2] in card3[2] and card1[2] in card4[2] and card1[2] in card5[2]):
+        gamelbl.config(text = "You have a flush!")
+    elif (card1[0] in card2[0] and card1[0] in card3[0] and card1[0] in card4[0]) or (card1[0] in card2[0] and card1[0] in card4[0] and card1[0] in card5[0]) or (card1[0] in card2[0] and card1[0] in card3[0] and card1[0] in card5[0]) or (card1[0] in card3[0] and card1[0] in card4[0] and card1[0] in card5[0]):
+        gamelbl.config(text = "You have four of a kind!")
+    elif (card2[0] in card3[0] and card2[0] in card4[0] and card2[0] in card5[0]):
+        gamelbl.config(text = "You have four of a kind!")
+    elif (card1[0] in card2[0] and card1[0] in card3[0]) or (card1[0] in card2[0] and card1[0] in card4[0]) or (card1[0] in card2[0] and card1[0] in card5[0]) or (card1[0] in card3[0] and card1[0] in card4[0]) or (card1[0] in card3[0] and card1[0] in card5[0]) or (card1[0] in card4[0] and card1[0] in card5[0]):
+        gamelbl.config(text = "You have three of a kind!")
+    elif(card2[0] in card3[0] and card2[0] in card4[0]) or (card2[0] in card3[0] and card2[0] in card5[0]) or (card2[0] in card4[0] and card2[0] in card5[0]):
+        gamelbl.config(text = "You have three of a kind!")
+    elif (card3[0] in card1[0] and card3[0] in card2[0]) or (card3[0] in card1[0] and card1[0] in card4[0]) or (card3[0] in card1[0] and card3[0] in card5[0]) or (card3[0] in card2[0] and card3[0] in card4[0]) or (card3[0] in card2[0] and card1[0] in card5[0]) or (card3[0] in card4[0] and card3[0] in card5[0]):
+        gamelbl.config(text = "You have three of a kind!")
+    elif (card4[0] in card1[0] and card3[0] in card2[0]) or (card4[0] in card1[0] and card4[0] in card3[0]) or (card4[0] in card1[0] and card4[0] in card5[0]) or (card4[0] in card2[0] and card4[0] in card3[0]) or (card4[0] in card2[0] and card4[0] in card5[0]):
+        gamelbl.config(text = "You have three of a kind!")
+    elif (card5[0] in card1[0] and card5[0] in card2[0]) or (card5[0] in card1[0] and card5[0] in card3[0]) or (card5[0] in card1[0] and card5[0] and card4[0]) or (card5[0] in card2[0] and card5[0] in card3[0]):
+        gamelbl.config(text = "You have three of a kind!")
+    elif card1[0] in card2[0] or card1[0] in card3[0] or card1[0] in card4[0] or card1[0] in card5[0]:
+        gamelbl.config(text = "You have a pair!")
+    elif card2[0] in card1[0] or card2[0] in card3[0] or card2[0] in card4[0] or card2[0] in card5[0]:
+        gamelbl.config(text = "You have a pair!")
+    elif card3[0] in card1[0] or card3[0] in card2[0] or card3[0] in card4[0] or card3[0] in card5[0]:
+        gamelbl.config(text= "You have a pair!")
+    elif card4[0] in card1[0] or card4[0] in card2[0] or card4[0] in card3[0] or card4[0] in card5[0]:
+        gamelbl.config(text= "You have a pair!")
+    elif card5[0] in card1[0] or card5[0] in card2[0] or card5[0] in card3[0] or card5[0] in card4[0]:
+        gamelbl.config(text= "You have a pair!")
+    else:
+        gamelbl.config(text = "")
+lbl1 = Label()
+lbl1.pack()
+gamelbl = Label()
+gamelbl.pack()
+btn1 = Button(text = "get hand", command = gethand)
+btn1.pack()
+btn2 = Button(text = "detect combos", command = detectcombos)
+btn2.pack()
+gethand()
+
+root.mainloop() 
