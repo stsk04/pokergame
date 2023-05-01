@@ -42,8 +42,6 @@ def detectcombos():
         gamelbl.config(text = "You have three of a kind!")
     elif (card4[0] in card1[0] and card3[0] in card2[0]) or (card4[0] in card1[0] and card4[0] in card3[0]) or (card4[0] in card1[0] and card4[0] in card5[0]) or (card4[0] in card2[0] and card4[0] in card3[0]) or (card4[0] in card2[0] and card4[0] in card5[0]):
         gamelbl.config(text = "You have three of a kind!")
-    elif (card5[0] in card1[0] and card5[0] in card2[0]) or (card5[0] in card1[0] and card5[0] in card3[0]) or (card5[0] in card1[0] and card5[0] and card4[0]) or (card5[0] in card2[0] and card5[0] in card3[0]):
-        gamelbl.config(text = "You have three of a kind!")
     elif card1[0] in card2[0] or card1[0] in card3[0] or card1[0] in card4[0] or card1[0] in card5[0]:
         gamelbl.config(text = "You have a pair!")
     elif card2[0] in card1[0] or card2[0] in card3[0] or card2[0] in card4[0] or card2[0] in card5[0]:
